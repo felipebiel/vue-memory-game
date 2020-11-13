@@ -18,7 +18,11 @@
 
       <div
         class="card"
-        :class="[card.isSelected ? 'card--front' : 'card--back'] + ' card' + suitsColors[card.suit]"
+        :class="
+          [card.isSelected ? 'card--front' : 'card--back'] +
+          ' card' +
+          suitsColors[card.suit]
+        "
         v-for="(card, index) in cardsGame"
         :key="index"
         @click="selectedCard(card)"
@@ -105,6 +109,7 @@ export default {
   methods: {
     displayInitialDeck() {
       this.playingCards = [];
+      this.cardsGame = [];
       for (let s = 0; s < this.suits.length; s++) {
         for (let r = 0; r < this.numbers.length; r++) {
           let card = {
@@ -121,8 +126,8 @@ export default {
       const cards = this.shuffleArray(this.playingCards);
       this.cardsGame = this.shuffleArray(
         this.cardsGame.concat(
-          _cloneDeep([...cards.slice(0, 10)]),
-          _cloneDeep([...cards.slice(0, 10)])
+          _cloneDeep([...cards.slice(0, 3)]),
+          _cloneDeep([...cards.slice(0, 3)])
         )
       );
     },
@@ -134,6 +139,7 @@ export default {
     resetGame() {
       this.start = false;
       this.name = "";
+      this.displayInitialDeck();
     },
     prepareCards() {
       this.cardsGame = [];
@@ -159,12 +165,12 @@ export default {
                 (element) => (element.isSelected = false)
               );
               this.cardsSelected = [];
-            }, 50);     
-            
-            
+            }, 50);
           } else {
-            this.cardsSelected = [];
-            alert("Acertou mizeravi");
+            setTimeout(() => {
+              this.cardsSelected = [];
+              alert("Acertou mizeravi");
+            }, 50);
           }
           this.moves++;
         }
@@ -203,10 +209,10 @@ export default {
   box-shadow: 1px 2px 4px black;
 
   &--back {
-    background: url('../assets/images/cardback.gif');
+    background: url("../assets/images/cardback.gif");
   }
 
-  &--front{
+  &--front {
     background: white;
     color: black;
   }
