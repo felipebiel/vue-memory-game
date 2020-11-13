@@ -16,22 +16,24 @@
         <p>Pontos: {{ moves }}</p>
       </div>
 
-      <div
-        class="card"
-        :class="
-          [card.isSelected ? 'card--front' : 'card--back'] +
-          ' card' +
-          suitsColors[card.suit]
-        "
-        v-for="(card, index) in cardsGame"
-        :key="index"
-        @click="selectedCard(card)"
-      >
-        <template v-if="card.isSelected">
-          <span class="card__suit card__suit--top">{{ card.suit }}</span>
-          <span class="card__number">{{ card.number }}</span>
-          <span class="card__suit card__suit--bottom">{{ card.suit }}</span>
-        </template>
+      <div id="cards">
+        <div
+          class="card"
+          :class="
+            [card.isSelected ? 'card--front' : 'card--back'] +
+            ' card' +
+            suitsColors[card.suit]
+          "
+          v-for="(card, index) in cardsGame"
+          :key="index"
+          @click="selectedCard(card)"
+        >
+          <template v-if="card.isSelected">
+            <span class="card__suit card__suit--top">{{ card.suit }}</span>
+            <span class="card__number">{{ card.number }}</span>
+            <span class="card__suit card__suit--bottom">{{ card.suit }}</span>
+          </template>
+        </div>
       </div>
 
       <!-- <ul>
@@ -64,6 +66,7 @@ export default {
       start: false,
       moves: 0,
       name: "",
+      pairs: 52,
       numbers: [
         "A",
         "2",
@@ -126,8 +129,8 @@ export default {
       const cards = this.shuffleArray(this.playingCards);
       this.cardsGame = this.shuffleArray(
         this.cardsGame.concat(
-          _cloneDeep([...cards.slice(0, 3)]),
-          _cloneDeep([...cards.slice(0, 3)])
+          _cloneDeep([...cards.slice(0, this.pairs)]),
+          _cloneDeep([...cards.slice(0, this.pairs)])
         )
       );
     },
@@ -198,12 +201,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+// cards
 .card {
   width: 75px;
   height: 100px;
   float: left;
-  margin-right: 5px;
-  margin-bottom: 5px;
+  margin-right: 15px;
+  margin-bottom: 15px;
   border-radius: 2px;
   position: relative;
   box-shadow: 1px 2px 4px black;
@@ -248,5 +252,13 @@ export default {
     top: 38%;
     text-align: center;
   }
+}
+
+#cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-content:  space-between;
+  max-width: 880px;
 }
 </style>
