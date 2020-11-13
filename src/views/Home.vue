@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <div class="card">
+    <!-- <div class="card">
       <span class="card__suit card__suit--top">♣</span>
       <span class="card__number">A</span>
       <span class="card__suit card__suit--bottom">♣</span>
-    </div>
+    </div> -->
 
     <div v-if="!start && !stillCardsSelected">
       <input type="text" v-model="name" placeholder="Nome" />
@@ -14,9 +14,23 @@
       <div>
         <p>Nome: {{ name }}</p>
         <p>Pontos: {{ moves }}</p>
-        {{ stillCardsSelected }}
       </div>
-      <ul>
+
+      <div
+        class="card"
+        :class="[card.isSelected ? 'card--front' : 'card--back']"
+        v-for="(card, index) in cardsGame"
+        :key="index"
+        @click="selectedCard(card)"
+      >
+        <template v-if="card.isSelected">
+          <span class="card__suit card__suit--top">{{ card.suit }}</span>
+          <span class="card__number">{{ card.number }}</span>
+          <span class="card__suit card__suit--bottom">{{ card.suit }}</span>
+        </template>
+      </div>
+
+      <!-- <ul>
         <li
           v-for="(card, index) in cardsGame"
           :key="index"
@@ -24,7 +38,7 @@
         >
           {{ card.name }} - {{ card.isSelected }}
         </li>
-      </ul>
+      </ul> -->
     </div>
 
     <div v-if="start && !stillCardsSelected">
@@ -46,8 +60,28 @@ export default {
       start: false,
       moves: 0,
       name: "",
-      numbers: ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'],
-      suits: ['♥','♦','♠','♣'],
+      numbers: [
+        "A",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "J",
+        "Q",
+        "K",
+      ],
+      suits: ["♥", "♦", "♠", "♣"],
+      suitsColors: {
+        "♥": "--red",
+        "♦": "--red",
+        "♠": "--black",
+        "♣": "--black",
+      },
       playingCards: [],
       // playingCards: [
       //   { name: "As espadas", isSelected: false, img: "" },
@@ -69,17 +103,17 @@ export default {
   },
   created() {},
   methods: {
-     displayInitialDeck() {
+    displayInitialDeck() {
       this.playingCards = [];
-      for( let s = 0; s < this.suits.length; s++ ) {
-        for( let r = 0; r < this.numbers.length; r++ ) {
+      for (let s = 0; s < this.suits.length; s++) {
+        for (let r = 0; r < this.numbers.length; r++) {
           let card = {
             id: new Date(),
             name: `${this.numbers[r]} - ${this.suits[s]}`,
             number: this.numbers[r],
             suit: this.suits[s],
-            isSelected: false
-          }
+            isSelected: false,
+          };
           this.playingCards.push(card);
         }
       }
@@ -154,7 +188,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
 .card {
   width: 75px;
   height: 100px;
@@ -163,27 +196,42 @@ export default {
   margin-bottom: 5px;
   border-radius: 2px;
   position: relative;
-  background: white;
-  color: black;
   box-shadow: 1px 2px 4px black;
+
+  &--back {
+    background: url('../assets/images/cardback.gif');
+  }
+
+  &--front{
+    background: white;
+    color: black;
+  }
+  &--red {
+    color: red;
+  }
+
+  &--black {
+    color: black;
+  }
 
   &__suit {
     width: 100%;
     display: block;
+
+    &--top {
+      text-align: left;
+      padding-left: 5px;
+    }
+
+    &--bottom {
+      position: absolute;
+      bottom: 0px;
+      text-align: left;
+      transform: rotate(180deg);
+      padding-left: 5px;
+    }
   }
 
-  &__suit--top {
-    text-align: left;
-    padding-left: 5px;
-  }
-
-  &__suit--bottom {
-    position: absolute;
-    bottom: 0px;
-    text-align: left;
-    transform: rotate(180deg);
-    padding-left: 5px;
-  }
   &__number {
     width: 100%;
     position: absolute;
