@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home container">
     <!-- <div class="card">
       <span class="card__suit card__suit--top">♣</span>
       <span class="card__number">A</span>
@@ -66,7 +66,7 @@ export default {
       start: false,
       moves: 0,
       name: "",
-      pairs: 52,
+      pairs: 10,
       numbers: [
         "A",
         "2",
@@ -201,6 +201,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.container {
+  width: 80%;
+
+  @media only screen and (max-width: 767px) { 
+    width: 100%;
+   }
+}
 // cards
 .card {
   width: 75px;
@@ -258,7 +265,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  justify-content:  space-between;
-  max-width: 880px;
+  justify-content: space-between;
 }
 </style>
