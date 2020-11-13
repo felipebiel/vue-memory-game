@@ -9,12 +9,22 @@
 </template>
 
 <style lang="scss">
+* {
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+}
+
+body {
+  background: #0F2027;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: #fff;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #nav {
@@ -22,8 +32,7 @@
 
   a {
     font-weight: bold;
-    color: #2c3e50;
-
+    color: white;
     &.router-link-exact-active {
       color: #42b983;
     }
