@@ -1,14 +1,20 @@
 <template>
   <div class="home">
-    {{ playingCards }}
+    {{ cardsSelected }}
     <ul>
-      <li v-for="(card, index) in cardsGame" :key="index" @click="selectedCard(card)">{{ card.name }} - {{ card.isSelected }}</li>
+      <li
+        v-for="(card, index) in cardsGame"
+        :key="index"
+        @click="selectedCard(card)"
+      >
+        {{ card.name }} - {{ card.isSelected }}
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
-import _cloneDeep from 'lodash/cloneDeep';
+import _cloneDeep from "lodash/cloneDeep";
 
 export default {
   name: "Home",
@@ -29,14 +35,38 @@ export default {
         // {name: 'Rei espadas', isSelected: false, img: ''},
       ],
       cardsGame: [],
+      cardsSelected: [],
     };
   },
   created() {
-    this.cardsGame = this.shuffleArray(this.cardsGame.concat(_cloneDeep([...this.playingCards]), _cloneDeep([...this.playingCards])));
+    this.cardsGame = this.shuffleArray(
+      this.cardsGame.concat(
+        _cloneDeep([...this.playingCards]),
+        _cloneDeep([...this.playingCards])
+      )
+    );
   },
   methods: {
     selectedCard(card) {
-      card.isSelected = true;
+      if (!card.isSelected) {
+        card.isSelected = true;
+
+        if (this.cardsSelected.length < 2) {
+          this.cardsSelected.push(card);
+        }
+        if (this.cardsSelected.length === 2) {
+          if (this.cardsSelected[0].name != this.cardsSelected[1].name) {
+            this.cardsSelected.forEach(
+              (element) => (element.isSelected = false)
+            );
+            this.cardsSelected = [];
+            alert("Errou!");
+          } else {
+            this.cardsSelected = [];
+            alert("Acertou mizeravi");
+          }
+        }
+      }
     },
     shuffleArray(array) {
       let counter = array.length;
