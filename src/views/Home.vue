@@ -1,15 +1,20 @@
 <template>
   <div class="home">
-    {{ cardsSelected }}
-    <ul>
-      <li
-        v-for="(card, index) in cardsGame"
-        :key="index"
-        @click="selectedCard(card)"
-      >
-        {{ card.name }} - {{ card.isSelected }}
-      </li>
-    </ul>
+    <div v-if="!start">
+      <input type="text" v-model="name" placeholder="Nome" />
+      <button type="button" @click="startGame">Iniciar</button>
+    </div>
+    <div v-else>
+      <ul>
+        <li
+          v-for="(card, index) in cardsGame"
+          :key="index"
+          @click="selectedCard(card)"
+        >
+          {{ card.name }} - {{ card.isSelected }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -20,6 +25,8 @@ export default {
   name: "Home",
   data() {
     return {
+      start: false,
+      name: '',
       playingCards: [
         { name: "As espadas", isSelected: false, img: "" },
         { name: "Dois espadas", isSelected: false, img: "" },
@@ -39,14 +46,21 @@ export default {
     };
   },
   created() {
-    this.cardsGame = this.shuffleArray(
-      this.cardsGame.concat(
-        _cloneDeep([...this.playingCards]),
-        _cloneDeep([...this.playingCards])
-      )
-    );
+    
   },
   methods: {
+    startGame() {
+      this.start = true;
+      this.prepareCards();
+    },
+    prepareCards() {
+      this.cardsGame = this.shuffleArray(
+        this.cardsGame.concat(
+          _cloneDeep([...this.playingCards]),
+          _cloneDeep([...this.playingCards])
+        )
+      );
+    },
     selectedCard(card) {
       if (!card.isSelected) {
         card.isSelected = true;
