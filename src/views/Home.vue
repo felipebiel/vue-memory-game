@@ -1,13 +1,18 @@
 <template>
   <div class="home">
-    {{ stillCardsSelected }}
+    <div class="card">
+      <span class="card__suit card__suit--top">♣</span>
+      <span class="card__number">A</span>
+      <span class="card__suit card__suit--bottom">♣</span>
+    </div>
+
     <div v-if="!start && !stillCardsSelected">
       <input type="text" v-model="name" placeholder="Nome" />
       <button type="button" @click="startGame">Iniciar</button>
     </div>
     <div v-else>
       <div>
-        <p>Nome: {{ name }} </p>
+        <p>Nome: {{ name }}</p>
         <p>Pontos: {{ moves }}</p>
         {{ stillCardsSelected }}
       </div>
@@ -23,6 +28,8 @@
     </div>
 
     <div v-if="start && !stillCardsSelected">
+      <p>Nome: {{ name }}</p>
+      <p>Pontos: {{ moves }}</p>
       TERMINOU REiniciar ?
       <button type="button" @click="resetGame">Reiniciar</button>
     </div>
@@ -38,7 +45,7 @@ export default {
     return {
       start: false,
       moves: 0,
-      name: '',
+      name: "",
       playingCards: [
         { name: "As espadas", isSelected: false, img: "" },
         { name: "Dois espadas", isSelected: false, img: "" },
@@ -57,9 +64,7 @@ export default {
       cardsSelected: [],
     };
   },
-  created() {
-    
-  },
+  created() {},
   methods: {
     startGame() {
       this.start = true;
@@ -67,7 +72,7 @@ export default {
     },
     resetGame() {
       this.start = false;
-      this.name = '';
+      this.name = "";
     },
     prepareCards() {
       this.cardsGame = [];
@@ -98,7 +103,6 @@ export default {
           }
           this.moves++;
         }
-        
       }
     },
     shuffleArray(array) {
@@ -117,10 +121,47 @@ export default {
   },
   computed: {
     stillCardsSelected() {
-      return this.cardsGame.some(element => !element.isSelected)
-    }
+      return this.cardsGame.some((element) => !element.isSelected);
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
+.card {
+  width: 75px;
+  height: 100px;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 2px;
+  position: relative;
+  background: white;
+  color: black;
+  box-shadow: 1px 2px 4px black;
+
+  &__suit {
+    width: 100%;
+    display: block;
+  }
+
+  &__suit--top {
+    text-align: left;
+    padding-left: 5px;
+  }
+
+  &__suit--bottom {
+    position: absolute;
+    bottom: 0px;
+    text-align: left;
+    transform: rotate(180deg);
+    padding-left: 5px;
+  }
+
+  &__number {
+    width: 100%;
+    position: absolute;
+    top: 38%;
+    text-align: center;
+  }
+}
 </style>
