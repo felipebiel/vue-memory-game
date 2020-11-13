@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <div v-if="!start">
+    {{ stillCardsSelected }}
+    <div v-if="!start && !stillCardsSelected">
       <input type="text" v-model="name" placeholder="Nome" />
       <button type="button" @click="startGame">Iniciar</button>
     </div>
@@ -8,6 +9,7 @@
       <div>
         <p>Nome: {{ name }} </p>
         <p>Pontos: {{ moves }}</p>
+        {{ stillCardsSelected }}
       </div>
       <ul>
         <li
@@ -18,6 +20,11 @@
           {{ card.name }} - {{ card.isSelected }}
         </li>
       </ul>
+    </div>
+
+    <div v-if="start && !stillCardsSelected">
+      TERMINOU REiniciar ?
+      <button type="button" @click="resetGame">Reiniciar</button>
     </div>
   </div>
 </template>
@@ -36,13 +43,13 @@ export default {
         { name: "As espadas", isSelected: false, img: "" },
         { name: "Dois espadas", isSelected: false, img: "" },
         { name: "Três espadas", isSelected: false, img: "" },
-        { name: "Quatro espadas", isSelected: false, img: "" },
-        { name: "Cinco espadas", isSelected: false, img: "" },
-        { name: "Seis espadas", isSelected: false, img: "" },
-        { name: "Sete espadas", isSelected: false, img: "" },
-        { name: "Oito espadas", isSelected: false, img: "" },
-        { name: "Nove espadas", isSelected: false, img: "" },
-        { name: "Valete espadas", isSelected: false, img: "" },
+        // { name: "Quatro espadas", isSelected: false, img: "" },
+        // { name: "Cinco espadas", isSelected: false, img: "" },
+        // { name: "Seis espadas", isSelected: false, img: "" },
+        // { name: "Sete espadas", isSelected: false, img: "" },
+        // { name: "Oito espadas", isSelected: false, img: "" },
+        // { name: "Nove espadas", isSelected: false, img: "" },
+        // { name: "Valete espadas", isSelected: false, img: "" },
         // {name: 'Dama espadas', isSelected: false, img: ''},
         // {name: 'Rei espadas', isSelected: false, img: ''},
       ],
@@ -58,7 +65,12 @@ export default {
       this.start = true;
       this.prepareCards();
     },
+    resetGame() {
+      this.start = false;
+      this.name = '';
+    },
     prepareCards() {
+      this.cardsGame = [];
       this.cardsGame = this.shuffleArray(
         this.cardsGame.concat(
           _cloneDeep([...this.playingCards]),
@@ -102,6 +114,11 @@ export default {
       }
       return array;
     },
+  },
+  computed: {
+    stillCardsSelected() {
+      return this.cardsGame.some(element => !element.isSelected)
+    }
   },
 };
 </script>
