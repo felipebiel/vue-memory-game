@@ -5,6 +5,10 @@
       <button type="button" @click="startGame">Iniciar</button>
     </div>
     <div v-else>
+      <div>
+        <p>Nome: {{ name }} </p>
+        <p>Pontos: {{ moves }}</p>
+      </div>
       <ul>
         <li
           v-for="(card, index) in cardsGame"
@@ -26,6 +30,7 @@ export default {
   data() {
     return {
       start: false,
+      moves: 0,
       name: '',
       playingCards: [
         { name: "As espadas", isSelected: false, img: "" },
@@ -79,7 +84,9 @@ export default {
             this.cardsSelected = [];
             alert("Acertou mizeravi");
           }
+          this.moves++;
         }
+        
       }
     },
     shuffleArray(array) {
