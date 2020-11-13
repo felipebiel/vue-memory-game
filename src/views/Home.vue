@@ -18,7 +18,7 @@
 
       <div
         class="card"
-        :class="[card.isSelected ? 'card--front' : 'card--back']"
+        :class="[card.isSelected ? 'card--front' : 'card--back'] + ' card' + suitsColors[card.suit]"
         v-for="(card, index) in cardsGame"
         :key="index"
         @click="selectedCard(card)"
@@ -153,11 +153,15 @@ export default {
         }
         if (this.cardsSelected.length === 2) {
           if (this.cardsSelected[0].name != this.cardsSelected[1].name) {
-            this.cardsSelected.forEach(
-              (element) => (element.isSelected = false)
-            );
-            this.cardsSelected = [];
-            alert("Errou!");
+            setTimeout(() => {
+              alert("Errou!");
+              this.cardsSelected.forEach(
+                (element) => (element.isSelected = false)
+              );
+              this.cardsSelected = [];
+            }, 50);     
+            
+            
           } else {
             this.cardsSelected = [];
             alert("Acertou mizeravi");
