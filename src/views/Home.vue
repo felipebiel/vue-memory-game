@@ -137,9 +137,9 @@ export default {
       //this.prepareCards();
     },
     resetGame() {
+      this.moves = 0;
       this.start = false;
       this.name = "";
-      this.displayInitialDeck();
     },
     prepareCards() {
       this.cardsGame = [];
