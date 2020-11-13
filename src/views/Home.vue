@@ -46,29 +46,56 @@ export default {
       start: false,
       moves: 0,
       name: "",
-      playingCards: [
-        { name: "As espadas", isSelected: false, img: "" },
-        { name: "Dois espadas", isSelected: false, img: "" },
-        { name: "Três espadas", isSelected: false, img: "" },
-        // { name: "Quatro espadas", isSelected: false, img: "" },
-        // { name: "Cinco espadas", isSelected: false, img: "" },
-        // { name: "Seis espadas", isSelected: false, img: "" },
-        // { name: "Sete espadas", isSelected: false, img: "" },
-        // { name: "Oito espadas", isSelected: false, img: "" },
-        // { name: "Nove espadas", isSelected: false, img: "" },
-        // { name: "Valete espadas", isSelected: false, img: "" },
-        // {name: 'Dama espadas', isSelected: false, img: ''},
-        // {name: 'Rei espadas', isSelected: false, img: ''},
-      ],
+      numbers: ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'],
+      suits: ['♥','♦','♠','♣'],
+      playingCards: [],
+      // playingCards: [
+      //   { name: "As espadas", isSelected: false, img: "" },
+      //   { name: "Dois espadas", isSelected: false, img: "" },
+      //   { name: "Três espadas", isSelected: false, img: "" },
+      //   // { name: "Quatro espadas", isSelected: false, img: "" },
+      //   // { name: "Cinco espadas", isSelected: false, img: "" },
+      //   // { name: "Seis espadas", isSelected: false, img: "" },
+      //   // { name: "Sete espadas", isSelected: false, img: "" },
+      //   // { name: "Oito espadas", isSelected: false, img: "" },
+      //   // { name: "Nove espadas", isSelected: false, img: "" },
+      //   // { name: "Valete espadas", isSelected: false, img: "" },
+      //   // {name: 'Dama espadas', isSelected: false, img: ''},
+      //   // {name: 'Rei espadas', isSelected: false, img: ''},
+      // ],
       cardsGame: [],
       cardsSelected: [],
     };
   },
   created() {},
   methods: {
+     displayInitialDeck() {
+      this.playingCards = [];
+      for( let s = 0; s < this.suits.length; s++ ) {
+        for( let r = 0; r < this.numbers.length; r++ ) {
+          let card = {
+            id: new Date(),
+            name: `${this.numbers[r]} - ${this.suits[s]}`,
+            number: this.numbers[r],
+            suit: this.suits[s],
+            isSelected: false
+          }
+          this.playingCards.push(card);
+        }
+      }
+
+      const cards = this.shuffleArray(this.playingCards);
+      this.cardsGame = this.shuffleArray(
+        this.cardsGame.concat(
+          _cloneDeep([...cards.slice(0, 10)]),
+          _cloneDeep([...cards.slice(0, 10)])
+        )
+      );
+    },
     startGame() {
       this.start = true;
-      this.prepareCards();
+      this.displayInitialDeck();
+      //this.prepareCards();
     },
     resetGame() {
       this.start = false;
@@ -127,6 +154,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+
 .card {
   width: 75px;
   height: 100px;
@@ -156,7 +184,6 @@ export default {
     transform: rotate(180deg);
     padding-left: 5px;
   }
-
   &__number {
     width: 100%;
     position: absolute;
