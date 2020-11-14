@@ -168,12 +168,12 @@ export default {
                 (element) => (element.isSelected = false)
               );
               this.cardsSelected = [];
-            }, 50);
+            }, 500);
           } else {
             setTimeout(() => {
               this.cardsSelected = [];
               alert("Acertou mizeravi");
-            }, 50);
+            }, 500);
           }
           this.moves++;
         }
@@ -209,7 +209,19 @@ export default {
   }
 }
 // cards
+
+@keyframes flip-out {
+  from { transform: rotateY(0deg);}
+  to { transform: rotateY(180deg); }
+}
+
+@keyframes flip-in {
+  from { transform: rotateY(180deg);}
+  to { transform: rotateY(0deg); }
+}
+
 .card {
+  cursor: pointer;
   width: 75px;
   height: 100px;
   float: left;
@@ -218,15 +230,21 @@ export default {
   border-radius: 2px;
   position: relative;
   box-shadow: 1px 2px 4px black;
+  transition: 0.6s;
+  transform-style: preserve-3d;
 
   &--back {
     background: url("../assets/images/cardback.gif");
+    background-color: white;
+    animation: flip-out 0.3s ease;
   }
 
   &--front {
     background: white;
     color: black;
+    animation: flip-in 0.3s ease;
   }
+
   &--red {
     color: red;
   }
