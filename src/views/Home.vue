@@ -1,14 +1,9 @@
 <template>
   <div class="home container">
-    <!-- <div class="card">
-      <span class="card__suit card__suit--top">♣</span>
-      <span class="card__number">A</span>
-      <span class="card__suit card__suit--bottom">♣</span>
-    </div> -->
-
-    <div v-if="!start && !stillCardsSelected">
-      <input type="text" v-model="name" placeholder="Nome" />
-      <button type="button" @click="startGame">Iniciar</button>
+    <div v-if="!start && !stillCardsSelected" class="form">
+      <h1 class="form__title">Jogo da memória</h1>
+      <input type="text" class="form__input form__input--text" v-model="name" placeholder="Nome" />
+      <button type="button" class="form__input form__input--button" @click="startGame">Iniciar</button>
     </div>
     <div v-else>
       <div>
@@ -266,5 +261,49 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   justify-content: space-between;
+}
+
+//home
+
+.home {
+  display: flex;
+  justify-content: center;
+}
+
+/* FORM */
+
+.form {
+  padding: 30px;
+  background-color: rgba(0,0,0, 0.3);
+  border-radius: 8px;
+
+  &__title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 0;
+  }
+
+  &__input {
+
+    height: 50px;
+    font-size: 1.2rem;
+
+    &--text {
+      width: 250px;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      padding-left: 10px;
+      border: none;
+    }
+
+    &--button {
+      border: none;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      background: #42b983;
+      color: white;
+    }
+
+  }
 }
 </style>
