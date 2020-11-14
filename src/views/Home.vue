@@ -1,18 +1,39 @@
 <template>
   <div class="home container">
-    <div v-if="!start && !stillCardsSelected" class="form">
+    <div v-if="!start" class="form">
       <h1 class="form__title">Jogo da memória</h1>
-      <input type="text" class="form__input form__input--text" v-model="name" placeholder="Nome" />
-      <button type="button" class="form__input form__input--button" @click="startGame">Iniciar</button>
+      <input
+        type="text"
+        class="form__input form__input--text"
+        v-model="name"
+        placeholder="Nome"
+      />
+      <button
+        type="button"
+        class="form__input form__input--button"
+        @click="startGame"
+      >
+        Iniciar
+      </button>
     </div>
     <div v-else class="score">
-      <div>
-        <h1 class="score__title">Jogo da memória</h1>
-        <p class="score__text">Nome: {{ name }}</p>
-        <p class="score__text">Pontos: {{ moves }}</p>
-      </div>
+      <h1 class="score__title">Jogo da memória</h1>
+      <p class="score__title" v-if="!stillCardsSelected">Parabéns</p>
+      <p v-if="!stillCardsSelected" class="score__text">Sua pontuação</p>
 
-      <div id="cards">
+      <p class="score__text">Nome: {{ name }}</p>
+      <p class="score__text">Pontos: {{ moves }}</p>
+
+      <button
+        v-if="!stillCardsSelected"
+        type="button"
+        class="score__button"
+        @click="resetGame"
+      >
+        Reiniciar
+      </button>
+
+      <div id="cards" v-if="stillCardsSelected">
         <div
           class="card"
           :class="
@@ -31,13 +52,6 @@
           </template>
         </div>
       </div>
-    </div>
-
-    <div v-if="start && !stillCardsSelected">
-      <p>Nome: {{ name }}</p>
-      <p>Pontos: {{ moves }}</p>
-      TERMINOU REiniciar ?
-      <button type="button" @click="resetGame">Reiniciar</button>
     </div>
   </div>
 </template>
@@ -190,9 +204,9 @@ export default {
 .container {
   width: 80%;
 
-  @media only screen and (max-width: 767px) { 
+  @media only screen and (max-width: 767px) {
     width: 100%;
-   }
+  }
 }
 // cards
 .card {
@@ -265,7 +279,7 @@ export default {
 
 .form {
   padding: 30px;
-  background-color: rgba(0,0,0, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 8px;
 
   &__title {
@@ -275,7 +289,6 @@ export default {
   }
 
   &__input {
-
     height: 50px;
     font-size: 1.2rem;
 
@@ -294,15 +307,14 @@ export default {
       background: #42b983;
       color: white;
     }
-
   }
 }
 
-//score 
+//score
 
 .score {
   padding: 30px;
-  background-color: rgba(0,0,0, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 8px;
 
   &__title {
@@ -315,6 +327,15 @@ export default {
     font-size: 1.5rem;
     text-align: center;
   }
-}
 
+  &__button {
+    height: 50px;
+    font-size: 1.2rem;
+    background: #42b983;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+  }
+}
 </style>
