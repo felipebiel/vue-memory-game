@@ -5,10 +5,11 @@
       <input type="text" class="form__input form__input--text" v-model="name" placeholder="Nome" />
       <button type="button" class="form__input form__input--button" @click="startGame">Iniciar</button>
     </div>
-    <div v-else>
+    <div v-else class="score">
       <div>
-        <p>Nome: {{ name }}</p>
-        <p>Pontos: {{ moves }}</p>
+        <h1 class="score__title">Jogo da memória</h1>
+        <p class="score__text">Nome: {{ name }}</p>
+        <p class="score__text">Pontos: {{ moves }}</p>
       </div>
 
       <div id="cards">
@@ -30,16 +31,6 @@
           </template>
         </div>
       </div>
-
-      <!-- <ul>
-        <li
-          v-for="(card, index) in cardsGame"
-          :key="index"
-          @click="selectedCard(card)"
-        >
-          {{ card.name }} - {{ card.isSelected }}
-        </li>
-      </ul> -->
     </div>
 
     <div v-if="start && !stillCardsSelected">
@@ -61,7 +52,7 @@ export default {
       start: false,
       moves: 0,
       name: "",
-      pairs: 10,
+      pairs: 2,
       numbers: [
         "A",
         "2",
@@ -306,4 +297,24 @@ export default {
 
   }
 }
+
+//score 
+
+.score {
+  padding: 30px;
+  background-color: rgba(0,0,0, 0.3);
+  border-radius: 8px;
+
+  &__title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 0;
+  }
+
+  &__text {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
+
 </style>
