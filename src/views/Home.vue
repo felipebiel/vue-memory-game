@@ -166,7 +166,7 @@ export default {
     pushUserToRank() {
       let usersRank = [];
       if(JSON.parse(localStorage.getItem('usersRank'))) {
-        usersRank.push(JSON.parse(localStorage.getItem('usersRank')));
+        usersRank = JSON.parse(localStorage.getItem('usersRank'));
       }
       usersRank.push({name: this.name, moves: this.moves});
       localStorage.setItem('usersRank', JSON.stringify(usersRank));
