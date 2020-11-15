@@ -4,7 +4,11 @@ import router from './router'
 import store from './store'
 import 'material-icons/iconfont/material-icons.css'
 
+import utils from '@/services/utils';
+
 Vue.config.productionTip = false
+
+Vue.prototype.$utils = utils;
 
 new Vue({
   router,

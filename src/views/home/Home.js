@@ -35,8 +35,8 @@ export default {
         },
         prepareCards() {
           this.cardsGame = [];
-          const cards = this.shuffleArray(this.playingCards);
-          this.cardsGame = this.shuffleArray(
+          const cards = this.$utils.shuffleArray(this.playingCards);
+          this.cardsGame = this.$utils.shuffleArray(
             this.cardsGame.concat(
               _cloneDeep([...cards.slice(0, this.pairs)]),
               _cloneDeep([...cards.slice(0, this.pairs)])
@@ -80,19 +80,6 @@ export default {
           }
           usersRank.push({name: this.name, moves: this.moves});
           localStorage.setItem('usersRank', JSON.stringify(usersRank));
-        },
-        shuffleArray(array) {
-          let counter = array.length;
-          let temp = null;
-          let index = null;
-          while (counter > 0) {
-            index = Math.floor(Math.random() * counter);
-            counter--;
-            temp = array[counter];
-            array[counter] = array[index];
-            array[index] = temp;
-          }
-          return array;
         },
       },
       computed: {
