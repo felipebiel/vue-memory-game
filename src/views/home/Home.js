@@ -53,16 +53,14 @@ export default {
             if (this.cardsSelected.length === 2) {
               if (this.cardsSelected[0].name != this.cardsSelected[1].name) {
                 setTimeout(() => {
-                  alert("Errou!");
                   this.cardsSelected.forEach(
                     (element) => (element.isSelected = false)
                   );
                   this.cardsSelected = [];
-                }, 500);
+                }, 1000);
               } else {
                 setTimeout(() => {
                   this.cardsSelected = [];
-                  alert("Acertou mizeravi");
                   if(!this.stillCardsSelected) {
                     alert("Jogo Finalizado");
                     this.pushUserToRank();
@@ -82,7 +80,7 @@ export default {
           return this.cardsGame.some((element) => !element.isSelected);
         },
         playingCards() {
-            return this.$store.state.playingCards
+            return this.$store.state.card.playingCards
         }
       },
 }

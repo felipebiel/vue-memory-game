@@ -5,7 +5,7 @@ export default {
     },
     computed: {
       rankUsers() {
-        return this.$store.state.usersRank;
+        return this.$store.state.user.usersRank;
       }
     },
    }
