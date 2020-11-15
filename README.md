@@ -1,6 +1,6 @@
 # Vue Jogo da memória 
 
-O desafio vue knights consiste em criar um jogo da memória  utilizando cartas.
+O desafio vue Jogo da memória consiste em criar um jogo da memória  utilizando cartas.
 
 
 ### Como executar o projeto
