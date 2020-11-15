@@ -15,7 +15,7 @@ export default {
           start: false,
           moves: 0,
           name: "",
-          pairs: 5,
+          pairs: 10,
           cardsGame: [],
           cardsSelected: [],
           endOfGame: false,
