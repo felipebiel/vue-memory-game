@@ -1,7 +1,11 @@
 import _cloneDeep from "lodash/cloneDeep";
+import FormGame from "@/components/formGame/FormGame.vue"
 
 export default {
     name: 'Home',
+    components: {
+        FormGame,
+    },
     data() {
         return {
           start: false,

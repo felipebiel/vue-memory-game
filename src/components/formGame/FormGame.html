@@ -1,0 +1,8 @@
+<div class="form">
+    <h1 class="form__title">Jogo da memória</h1>
+    <input type="text" class="form__input form__input--text" placeholder="Nome" :value="name"
+        @input="$emit('update:name', $event.target.value)" />
+    <button type="button" class="form__input form__input--button" @click="emitStartGame">
+        Iniciar
+    </button>
+</div>
