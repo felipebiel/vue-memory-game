@@ -1,29 +1,22 @@
-# vue-memory-game
+# Vue Jogo da memória 
 
-## Project setup
-```
-npm install
-```
+O desafio vue knights consiste em criar um jogo da memória  utilizando cartas.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Como executar o projeto
 
-### Run your tests
+O projeto roda em container docker utilizando o Makefile.
+
+1. Para Iniciar o build do container
+```sh
+$ make setup
 ```
-npm run test
+2. Para executar o container do  projeto
+```sh
+$ make start
 ```
 
-### Lints and fixes files
+3. Para encerrar o container do projeto
+```sh
+$ make stop
 ```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
