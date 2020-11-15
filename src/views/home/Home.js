@@ -16,53 +16,14 @@ export default {
           moves: 0,
           name: "",
           pairs: 2,
-          numbers: [
-            "A",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "J",
-            "Q",
-            "K",
-          ],
-          suits: ["♥", "♦", "♠", "♣"],
-          suitsColors: {
-            "♥": "--red",
-            "♦": "--red",
-            "♠": "--black",
-            "♣": "--black",
-          },
-          playingCards: [],
           cardsGame: [],
           cardsSelected: [],
         };
       },
       created() {
-        this.displayInitialDeck();
+        this.$store.dispatch('displayInitialDeck')
       },
       methods: {
-        displayInitialDeck() {
-          this.playingCards = [];
-          
-          for (let s = 0; s < this.suits.length; s++) {
-            for (let r = 0; r < this.numbers.length; r++) {
-              let card = {
-                id: new Date(),
-                name: `${this.numbers[r]} - ${this.suits[s]}`,
-                number: this.numbers[r],
-                suit: this.suits[s],
-                isSelected: false,
-              };
-              this.playingCards.push(card);
-            }
-          }      
-        },
         startGame() {
           this.start = true;
           this.prepareCards();
@@ -138,5 +99,8 @@ export default {
         stillCardsSelected() {
           return this.cardsGame.some((element) => !element.isSelected);
         },
+        playingCards() {
+            return this.$store.state.playingCards
+        }
       },
 }
