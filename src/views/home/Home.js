@@ -19,6 +19,7 @@ export default {
           cardsGame: [],
           cardsSelected: [],
           endOfGame: false,
+          lazyCard: false,
         };
       },
       created() {
@@ -46,7 +47,7 @@ export default {
           );
         },
         selectedCard(card) {
-          if (!card.isSelected) {
+          if (!card.isSelected && !this.lazyCard) {
             card.isSelected = true;
     
             if (this.cardsSelected.length < 2) {
@@ -54,11 +55,13 @@ export default {
             }
             if (this.cardsSelected.length === 2) {
               if (this.cardsSelected[0].name != this.cardsSelected[1].name) {
+                this.lazyCard = true;
                 setTimeout(() => {
                   this.cardsSelected.forEach(
                     (element) => (element.isSelected = false)
                   );
                   this.cardsSelected = [];
+                  this.lazyCard = false;
                 }, 1000);
               } else {
                 setTimeout(() => {

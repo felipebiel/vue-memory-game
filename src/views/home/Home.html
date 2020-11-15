@@ -1,10 +1,11 @@
 <div class="home container">
-    <transition name="fade" appear mode="out-in">
+    {{lazyCard }}
+    <transition name="fade" appear mode="out-in">       
         <FormGame 
             :name.sync="name" 
             @emitStartGame="startGame" 
             v-if="!start" 
-        />
+        />     
 
         <Score v-else 
             :stillCardsSelected="stillCardsSelected"
