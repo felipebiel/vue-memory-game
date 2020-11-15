@@ -1,0 +1,11 @@
+<div class="card" :class="
+          [card.isSelected ? 'card--front' : 'card--back'] +
+          ' card' +
+          suitsColors[card.suit]
+        ">
+    <template v-if="card.isSelected">
+        <span class="card__suit card__suit--top">{{ card.suit }}</span>
+        <span class="card__number">{{ card.number }}</span>
+        <span class="card__suit card__suit--bottom">{{ card.suit }}</span>
+    </template>
+</div>

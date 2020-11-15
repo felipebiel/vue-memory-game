@@ -1,0 +1,58 @@
+.card {
+    cursor: pointer;
+    width: 75px;
+    height: 100px;
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 1px 2px 4px black;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+  
+    &--back {
+      background: url("../../assets/images/cardback.gif");
+      background-color: white;
+      animation: flip-out 0.3s ease;
+    }
+  
+    &--front {
+      background: white;
+      color: black;
+      animation: flip-in 0.3s ease;
+    }
+  
+    &--red {
+      color: red;
+    }
+  
+    &--black {
+      color: black;
+    }
+  
+    &__suit {
+      width: 100%;
+      display: block;
+  
+      &--top {
+        text-align: left;
+        padding-left: 5px;
+      }
+  
+      &--bottom {
+        position: absolute;
+        bottom: 0px;
+        text-align: left;
+        transform: rotate(180deg);
+        padding-left: 5px;
+      }
+    }
+  
+    &__number {
+      width: 100%;
+      position: absolute;
+      top: 38%;
+      text-align: center;
+    }
+  }

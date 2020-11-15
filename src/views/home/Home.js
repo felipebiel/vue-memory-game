@@ -1,10 +1,12 @@
 import _cloneDeep from "lodash/cloneDeep";
 import FormGame from "@/components/formGame/FormGame.vue"
+import Card from "@/components/card/Card.vue"
 
 export default {
     name: 'Home',
     components: {
         FormGame,
+        Card
     },
     data() {
         return {
