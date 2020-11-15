@@ -1,8 +1,11 @@
 export default {
     name: 'Rank',
+    created () {
+        this.$store.dispatch('getUsersRank')  
+    },
     computed: {
       rankUsers() {
-        return JSON.parse(localStorage.getItem('usersRank')) ? JSON.parse(localStorage.getItem('usersRank')).sort((a, b) => a.moves - b.moves) : [];
+        return this.$store.state.usersRank;
       }
     },
    }
