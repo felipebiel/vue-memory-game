@@ -90,29 +90,17 @@ export default {
         "♣": "--black",
       },
       playingCards: [],
-      // playingCards: [
-      //   { name: "As espadas", isSelected: false, img: "" },
-      //   { name: "Dois espadas", isSelected: false, img: "" },
-      //   { name: "Três espadas", isSelected: false, img: "" },
-      //   // { name: "Quatro espadas", isSelected: false, img: "" },
-      //   // { name: "Cinco espadas", isSelected: false, img: "" },
-      //   // { name: "Seis espadas", isSelected: false, img: "" },
-      //   // { name: "Sete espadas", isSelected: false, img: "" },
-      //   // { name: "Oito espadas", isSelected: false, img: "" },
-      //   // { name: "Nove espadas", isSelected: false, img: "" },
-      //   // { name: "Valete espadas", isSelected: false, img: "" },
-      //   // {name: 'Dama espadas', isSelected: false, img: ''},
-      //   // {name: 'Rei espadas', isSelected: false, img: ''},
-      // ],
       cardsGame: [],
       cardsSelected: [],
     };
   },
-  created() {},
+  created() {
+    this.displayInitialDeck();
+  },
   methods: {
     displayInitialDeck() {
       this.playingCards = [];
-      this.cardsGame = [];
+      
       for (let s = 0; s < this.suits.length; s++) {
         for (let r = 0; r < this.numbers.length; r++) {
           let card = {
@@ -124,20 +112,11 @@ export default {
           };
           this.playingCards.push(card);
         }
-      }
-
-      const cards = this.shuffleArray(this.playingCards);
-      this.cardsGame = this.shuffleArray(
-        this.cardsGame.concat(
-          _cloneDeep([...cards.slice(0, this.pairs)]),
-          _cloneDeep([...cards.slice(0, this.pairs)])
-        )
-      );
+      }      
     },
     startGame() {
       this.start = true;
-      this.displayInitialDeck();
-      //this.prepareCards();
+      this.prepareCards();
     },
     resetGame() {
       this.moves = 0;
@@ -146,10 +125,11 @@ export default {
     },
     prepareCards() {
       this.cardsGame = [];
+      const cards = this.shuffleArray(this.playingCards);
       this.cardsGame = this.shuffleArray(
         this.cardsGame.concat(
-          _cloneDeep([...this.playingCards]),
-          _cloneDeep([...this.playingCards])
+          _cloneDeep([...cards.slice(0, this.pairs)]),
+          _cloneDeep([...cards.slice(0, this.pairs)])
         )
       );
     },
