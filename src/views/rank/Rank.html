@@ -1,11 +1,11 @@
 <div class="rank">
-  <h1 class="rank__title">Melhores Jogadores</h1>
-  <ul class="rank__list">
-    <li class="rank__item" v-for="(user, index) in rankUsers" :key="index">
-      <div class="rank__attribute rank__attribute--name">
-        <span class="material-icons">account_circle</span> {{ user.name }} </div>
-      <div class="rank__attribute">
-        <span class="material-icons">sync</span> {{ user.moves}}</div>
-    </li>
-  </ul>
-</div>
+    <h1 class="rank__title">Melhores Jogadores</h1>
+    <ul class="rank__list">
+      <li class="rank__item" v-for="(user, index) in rankUsers" :key="index">
+        <div class="rank__attribute rank__attribute--name">
+          <span class="material-icons">account_circle</span> {{ user.name }} </div>
+        <div class="rank__attribute">
+          <span class="material-icons">sync</span> {{ user.moves}}</div>
+      </li>
+    </ul>
+  </div>

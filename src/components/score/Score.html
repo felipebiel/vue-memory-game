@@ -11,8 +11,8 @@
     </button>
 
     <div id="cards" v-if="!endOfGame">
-        <template v-for="(card, index) in cardsGame"    @click="emitSelectedCard(card)">
-            <Card :card="card" :key="index"/>
-        </template>
+        <div v-for="(card, index) in cardsGame" :key="index" @click="emitSelectedCard(card)">
+            <Card :card="card" />
+        </div>
     </div>
 </div>
