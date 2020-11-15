@@ -1,0 +1,55 @@
+<div class="home container">
+    <div v-if="!start" class="form">
+      <h1 class="form__title">Jogo da memória</h1>
+      <input
+        type="text"
+        class="form__input form__input--text"
+        v-model="name"
+        placeholder="Nome"
+      />
+      <button
+        type="button"
+        class="form__input form__input--button"
+        @click="startGame"
+      >
+        Iniciar
+      </button>
+    </div>
+    <div v-else class="score">
+      <h1 class="score__title">Jogo da memória</h1>
+      <p class="score__title" v-if="!stillCardsSelected">Parabéns</p>
+      <p v-if="!stillCardsSelected" class="score__text">Sua pontuação</p>
+
+      <p class="score__text">Nome: {{ name }}</p>
+      <p class="score__text">Pontos: {{ moves }}</p>
+
+      <button
+        v-if="!stillCardsSelected"
+        type="button"
+        class="score__button"
+        @click="resetGame"
+      >
+        Reiniciar
+      </button>
+
+      <div id="cards" v-if="stillCardsSelected">
+        <div
+          class="card"
+          :class="
+            [card.isSelected ? 'card--front' : 'card--back'] +
+            ' card' +
+            suitsColors[card.suit]
+          "
+          v-for="(card, index) in cardsGame"
+          :key="index"
+          @click="selectedCard(card)"
+        >
+          <template v-if="card.isSelected">
+            <span class="card__suit card__suit--top">{{ card.suit }}</span>
+            <span class="card__number">{{ card.number }}</span>
+            <span class="card__suit card__suit--bottom">{{ card.suit }}</span>
+          </template>
+        </div>
+      </div>
+    </div>
+  </div>
