@@ -18,6 +18,7 @@ export default {
           pairs: 2,
           cardsGame: [],
           cardsSelected: [],
+          endOfGame: false,
         };
       },
       created() {
@@ -31,6 +32,7 @@ export default {
         resetGame() {
           this.moves = 0;
           this.start = false;
+          this.endOfGame = false;
           this.name = "";
         },
         prepareCards() {
@@ -62,8 +64,10 @@ export default {
                 setTimeout(() => {
                   this.cardsSelected = [];
                   if(!this.stillCardsSelected) {
-                    alert("Jogo Finalizado");
-                    this.pushUserToRank();
+                    setTimeout(() => {
+                        this.endOfGame = true;
+                        this.pushUserToRank();
+                    }, 1000)
                   }
                 }, 500);
               }

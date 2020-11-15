@@ -10,6 +10,10 @@ export default {
             type: Boolean,
             default: false
         },
+        endOfGame: {
+            type: Boolean,
+            default: false
+        },
         name: {
             type: String,
             default: ''
