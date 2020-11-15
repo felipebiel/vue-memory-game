@@ -1,0 +1,26 @@
+.nav {
+    padding: 30px;
+    
+
+    &__link {
+        padding: 20px 30px;
+        background-color: rgba(0,0,0,0.2);
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+
+        &--active {
+            background-color: #42b983;
+        }
+
+        &--left {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        &--rigth {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+    }
+  }

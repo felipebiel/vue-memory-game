@@ -1,12 +1,19 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Novo Jogo</router-link> |
-      <router-link to="/rank">Lista de melhores</router-link>
-    </div>
+    <NavBar />
     <router-view/>
   </div>
 </template>
+
+<script>
+import NavBar from "@/components/navBar/NavBar.vue"
+
+export default {
+  components: {
+    NavBar,
+  }, 
+}
+</script>
 
 <style lang="scss">
 * {
@@ -25,18 +32,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: white;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 
 .fade-enter-active, .fade-leave-active {
