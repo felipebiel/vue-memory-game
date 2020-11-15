@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Novo Jogo</router-link> |
-      <router-link to="/about">Lista de melhores</router-link>
+      <router-link to="/rank">Lista de melhores</router-link>
     </div>
     <router-view/>
   </div>

@@ -1,5 +1,4 @@
-<template>
-  <div class="rank">
+<div class="rank">
     <h1 class="rank__title">Melhores Jogadores</h1>
     <ul class="rank__list">
       <li class="rank__item" v-for="(user, index) in rankUsers" :key="index">
@@ -10,20 +9,3 @@
       </li>
     </ul>
   </div>
-</template>
-<script>
-  export default {
-    
-   computed: {
-     rankUsers() {
-       return JSON.parse(localStorage.getItem('usersRank')) ? JSON.parse(localStorage.getItem('usersRank')).sort((a, b) => a.moves - b.moves) : [];
-     }
-   },
-  }
-</script>
-
-<style lang="scss" scoped>
-
-
-
-</style>
