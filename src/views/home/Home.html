@@ -1,16 +1,18 @@
 <div class="home container">
-    <FormGame 
-        :name.sync="name" 
-        @emitStartGame="startGame" 
-        v-if="!start" 
-    />
+    <transition name="fade" appear mode="out-in">
+        <FormGame 
+            :name.sync="name" 
+            @emitStartGame="startGame" 
+            v-if="!start" 
+        />
 
-    <Score v-else 
-        :stillCardsSelected="stillCardsSelected"
-        :endOfGame="endOfGame"
-        :name="name" 
-        :moves="moves" 
-        :cardsGame="cardsGame"
-        @emitSelectedCard="selectedCard" @emitResetGame="resetGame"  
-    />
+        <Score v-else 
+            :stillCardsSelected="stillCardsSelected"
+            :endOfGame="endOfGame"
+            :name="name" 
+            :moves="moves" 
+            :cardsGame="cardsGame"
+            @emitSelectedCard="selectedCard" @emitResetGame="resetGame"  
+        />
+    </transition>
 </div>
