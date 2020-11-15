@@ -5,7 +5,7 @@ export default {
     },
     computed: {
       rankUsers() {
-        return this.$store.state.user.usersRank;
+        return this.$store.state.user.usersRank? this.$store.state.user.usersRank.sort((a, b) => a.moves - b.moves): [];
       }
     },
    }
