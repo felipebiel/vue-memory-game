@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    usersRank: [],
     playingCards: [],
     numbers: [
       "A",
@@ -29,6 +30,9 @@ export default new Vuex.Store({
     },
     EMPTY_PLAYINGCARDS(state) {
       state.playingCards = []
+    },
+    PUSH_USERSRANK (state, users) {
+      state.usersRank = users
     }
   },
   actions: {
@@ -46,6 +50,15 @@ export default new Vuex.Store({
           context.commit('PUSH_CARDS', card);
         }
       }
+    },
+    pushUserToRank(context, user) {
+      let usersRank = [];
+      if(JSON.parse(localStorage.getItem('usersRank'))) {
+        usersRank = JSON.parse(localStorage.getItem('usersRank'));
+      }
+      usersRank.push(user);
+      localStorage.setItem('usersRank', JSON.stringify(usersRank));
+      context.commit('PUSH_USERSRANK', usersRank);
     },
   },
   modules: {
