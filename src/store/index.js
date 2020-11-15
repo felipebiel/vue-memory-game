@@ -60,6 +60,13 @@ export default new Vuex.Store({
       localStorage.setItem('usersRank', JSON.stringify(usersRank));
       context.commit('PUSH_USERSRANK', usersRank);
     },
+    getUsersRank(context) {
+      let usersRank = [];
+        if(JSON.parse(localStorage.getItem('usersRank'))) {
+          usersRank = JSON.parse(localStorage.getItem('usersRank'));
+        }
+      context.commit('PUSH_USERSRANK', usersRank);
+    }
   },
   modules: {
   }
