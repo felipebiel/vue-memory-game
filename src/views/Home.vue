@@ -153,11 +153,23 @@ export default {
             setTimeout(() => {
               this.cardsSelected = [];
               alert("Acertou mizeravi");
+              if(!this.stillCardsSelected) {
+                alert("Jogo Finalizado");
+                this.pushUserToRank();
+              }
             }, 500);
           }
           this.moves++;
         }
       }
+    },
+    pushUserToRank() {
+      let usersRank = [];
+      if(JSON.parse(localStorage.getItem('usersRank'))) {
+        usersRank.push(JSON.parse(localStorage.getItem('usersRank')));
+      }
+      usersRank.push({name: this.name, moves: this.moves});
+      localStorage.setItem('usersRank', JSON.stringify(usersRank));
     },
     shuffleArray(array) {
       let counter = array.length;
