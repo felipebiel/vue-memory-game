@@ -4,7 +4,7 @@
     <p v-if="!stillCardsSelected && endOfGame" class="score__text">Sua pontuação</p>
 
     <p class="score__text">Nome: {{ name }}</p>
-    <p class="score__text">Pontos: {{ moves }}</p>
+    <p class="score__text">Movimentos: {{ moves }}</p>
 
     <button v-if="!stillCardsSelected && endOfGame" type="button" class="score__button" @click="emitResetGame">
         Reiniciar
