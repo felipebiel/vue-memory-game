@@ -1,61 +1,12 @@
 .container {
-    width: 80%;
-  
+    width: 80%;  
     @media only screen and (max-width: 767px) {
       width: 100%;
     }
-  }
-  // cards
-  
-  @keyframes flip-out {
-    from { transform: rotateY(0deg);}
-    to { transform: rotateY(180deg); }
-  }
-  
-  @keyframes flip-in {
-    from { transform: rotateY(180deg);}
-    to { transform: rotateY(0deg); }
-  }
-  
-  #cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    justify-content: space-between;
-  }
-  
-  //home
-  
+  }    
+    
   .home {
     display: flex;
     justify-content: center;
   }
   
-  //score
-  
-  .score {
-    padding: 30px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-  
-    &__title {
-      font-size: 2.5rem;
-      text-align: center;
-      margin-top: 0;
-    }
-  
-    &__text {
-      font-size: 1.5rem;
-      text-align: center;
-    }
-  
-    &__button {
-      height: 50px;
-      font-size: 1.2rem;
-      background: #42b983;
-      color: white;
-      border-radius: 8px;
-      border: none;
-      width: 100%;
-    }
-  }

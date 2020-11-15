@@ -1,22 +1,15 @@
 <div class="home container">
-    <FormGame :name.sync="name" @emitStartGame="startGame" v-if="!start" />
+    <FormGame 
+        :name.sync="name" 
+        @emitStartGame="startGame" 
+        v-if="!start" 
+    />
 
-    <div v-else class="score">
-        <h1 class="score__title">Jogo da memória</h1>
-        <p class="score__title" v-if="!stillCardsSelected">Parabéns</p>
-        <p v-if="!stillCardsSelected" class="score__text">Sua pontuação</p>
-
-        <p class="score__text">Nome: {{ name }}</p>
-        <p class="score__text">Pontos: {{ moves }}</p>
-
-        <button v-if="!stillCardsSelected" type="button" class="score__button" @click="resetGame">
-            Reiniciar
-        </button>
-
-        <div id="cards" v-if="stillCardsSelected">
-            <div v-for="(card, index) in cardsGame" :key="index" @click="selectedCard(card)">
-                <Card :card="card" />
-            </div>
-        </div>
-    </div>
+    <Score v-else 
+        :stillCardsSelected="stillCardsSelected"
+        :name="name" 
+        :moves="moves" 
+        :cardsGame="cardsGame"
+        @emitSelectedCard="selectedCard" @emitResetGame="resetGame"  
+    />
 </div>
